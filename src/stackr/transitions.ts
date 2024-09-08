@@ -5,9 +5,11 @@ import { machine } from "./machine";
 const move: STF<CrissCrossState> = {
   handler: ({ inputs: { moves }, state, emit }) => {
 
-    if (JSON.parse(moves).move != 0) {
+    if (JSON.parse(moves).move > 1) {
       const prevgame = JSON.parse(machine.state).game;
-      // console.log("prev state", prevgame);
+      const prevMove = JSON.parse(machine.state).move;
+      const currentMove = JSON.parse(moves).move;
+      // console.log("prev state", prevMove);
 
       /*todo :
       1. The state which it is updating must be non - zero 
@@ -26,10 +28,21 @@ const move: STF<CrissCrossState> = {
       }
       //condition 3 
       if (JSON.parse(moves).move % 2 == 1) {
-
+        const prevRow = JSON.parse(machine.state).row;
+        const prevCol = JSON.parse(machine.state).col;
+        const currentRow = JSON.parse(moves).row;
+        const currentCol = JSON.parse(moves).col;
+        
+        if (
+          !((Math.abs(prevRow - currentRow) === 1 && Math.abs(prevCol - currentCol) === 0) ||
+          (Math.abs(prevRow - currentRow) === 0 && Math.abs(prevCol - currentCol) === 1))
+        ) {
+          throw new Error('Place number to adajacent cells only!');
+        }
       }
-      const prevMove = JSON.parse(machine.state).move;
-      const currentMove = JSON.parse(moves).move;
+      // condition 4
+      // const prevMove = JSON.parse(machine.state).move;
+      // const currentMove = JSON.parse(moves).move;
       if (currentMove != prevMove + 1) {
         throw new Error('cannot jump states')
       }

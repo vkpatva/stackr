@@ -12,12 +12,12 @@ const main = async () => {
   Playground.init(mru);
 
   const totalMoves = 24;
-  let currentMove = 0;
+  let currentMove = 1;
   const wallet = Wallet.createRandom();
 
   while (currentMove <= totalMoves) {
 
-    if (currentMove == 0) {
+    if (currentMove == 1) {
       let res = await number({
         message: "Please enter number between 1 to 6",
         min: 1,
@@ -98,7 +98,7 @@ const main = async () => {
 
       let inputs2 = {
         moves: JSON.stringify({
-          game: newState,
+          game: newState2,
           move: currentMove,
           dice: secondDiceNumber,
           row: row2,
