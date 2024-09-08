@@ -32,10 +32,10 @@ const move: STF<CrissCrossState> = {
         const prevCol = JSON.parse(machine.state).col;
         const currentRow = JSON.parse(moves).row;
         const currentCol = JSON.parse(moves).col;
-        
+
         if (
           !((Math.abs(prevRow - currentRow) === 1 && Math.abs(prevCol - currentCol) === 0) ||
-          (Math.abs(prevRow - currentRow) === 0 && Math.abs(prevCol - currentCol) === 1))
+            (Math.abs(prevRow - currentRow) === 0 && Math.abs(prevCol - currentCol) === 1))
         ) {
           throw new Error('Place number to adajacent cells only!');
         }
